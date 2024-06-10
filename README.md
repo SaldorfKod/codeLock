@@ -1,4 +1,4 @@
-Made by Tim Nilsson and Calle Larsson
+Made by Tim Nilsson and Calle Larsen
 
 Arduino Nano esp32 project with micropython simulating a door-lock system using buttons, led diods and a servo
 
