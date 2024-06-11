@@ -1,3 +1,6 @@
+# Library to control servo movement
+# Source: https://www.upesy.com/blogs/tutorials/esp32-servo-motor-sg90-on-micropython#control-a-servo-via-a-python-script-with-the-library-servo-py
+
 from machine import Pin, PWM
 
 class Servo:

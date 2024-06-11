@@ -1,3 +1,6 @@
+# Program simulating a door lock system with arduino esp32 with micropython
+# By Tim Nilsson and Calle Larsen
+
 import machine
 import time
 from servo import Servo
@@ -37,10 +40,11 @@ time_opened = time.ticks_ms()
 is_in_reset_mode = False
 is_reset_permitted = False
 
+
+# Function to check which button, if any, has been pressed
 def get_new_button_value():
     new_button_value = 0
 
-    # Check which button, if any, has been pressed
     if button_one.value() == 0:
         new_button_value = 1
     
@@ -58,6 +62,7 @@ def get_new_button_value():
 
     return new_button_value
 
+
 # Function to simulate opening of the door
 def open_door():
     print("Opening door")
@@ -66,12 +71,14 @@ def open_door():
     led_green.value(1)
     motor.move(180)
 
+
 # Function to simulate closing of the door
 def close_door():
     print("Closing door")
     motor.move(0)
     led_green.value(0)
     led_red.value(1)
+
 
 # Function to push a given value into the list
 def add_to_pressed_buttons(new_value):
@@ -83,6 +90,7 @@ def add_to_pressed_buttons(new_value):
     else:
         pressed_buttons.append(new_value)
         print(pressed_buttons)
+
 
 while True:
 
@@ -102,6 +110,7 @@ while True:
       
         current_button_value = new_button_value
 
+        # Sets device in reset mode if fifth button is pressed
         if new_button_value == 5 and is_in_reset_mode == False:
             print("Enter current code: ")
             is_in_reset_mode = True
@@ -131,6 +140,7 @@ while True:
             led_green.value(0)
             print("Code reset")
             is_reset_permitted = False
+        # When user has entered correct code after pressing fifth button
         elif is_in_reset_mode == True and pressed_buttons == correct_code:
             print("Enter new code: ")
             pressed_buttons.clear()
